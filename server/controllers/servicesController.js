@@ -7,32 +7,29 @@ let services = JSON.parse(
   fs.readFileSync(path.join(__dirname, "../data/services.json"), "utf-8")
 );
 
-// In-memory storage for saved and hired services
-// (resets when server restarts - this is fine for a lab project)
+
 let savedServices = [];
 let hiredServices = [];
 
-// ─── GET ALL SERVICES ───────────────────────────────────────────────────────
-// GET /api/services
-// Returns all services (or filtered by category/search query)
+
 const getAllServices = (req, res) => {
   try {
     let result = [...services]; // copy the array so we don't modify original
 
-    // If user searched for something, filter by title
+    
     if (req.query.search) {
       const search = req.query.search.toLowerCase();
       result = result.filter((s) =>
         s.title.toLowerCase().includes(search)
       );
     }
+    
 
-    // If user selected a category, filter by it
     if (req.query.category && req.query.category !== "All") {
       result = result.filter((s) => s.category === req.query.category);
     }
 
-    // Sort by price or rating
+   
     if (req.query.sort === "price-low") {
       result.sort((a, b) => a.price - b.price);
     } else if (req.query.sort === "price-high") {
@@ -47,8 +44,7 @@ const getAllServices = (req, res) => {
   }
 };
 
-// ─── GET SINGLE SERVICE ──────────────────────────────────────────────────────
-// GET /api/services/:id
+
 const getServiceById = (req, res) => {
   try {
     const id = parseInt(req.params.id); // convert string to number
@@ -64,13 +60,12 @@ const getServiceById = (req, res) => {
   }
 };
 
-// ─── ADD NEW SERVICE (Bonus) ─────────────────────────────────────────────────
-// POST /api/services
+
 const addService = (req, res) => {
   try {
     const { title, category, price, description, delivery } = req.body;
 
-    // Simple validation - make sure required fields exist
+    
     if (!title || !category || !price || !description || !delivery) {
       return res.status(400).json({
         success: false,
@@ -78,9 +73,9 @@ const addService = (req, res) => {
       });
     }
 
-    // Create the new service object
+    
     const newService = {
-      id: services.length + 1, // simple auto-increment id
+      id: services.length + 1, 
       title,
       category,
       price: Number(price),
@@ -102,8 +97,7 @@ const addService = (req, res) => {
   }
 };
 
-// ─── SAVE A SERVICE ──────────────────────────────────────────────────────────
-// POST /api/save
+
 const saveService = (req, res) => {
   try {
     const { serviceId } = req.body;
@@ -130,8 +124,7 @@ const saveService = (req, res) => {
   }
 };
 
-// ─── HIRE A SERVICE ──────────────────────────────────────────────────────────
-// POST /api/hire
+
 const hireService = (req, res) => {
   try {
     const { serviceId } = req.body;
@@ -158,8 +151,7 @@ const hireService = (req, res) => {
   }
 };
 
-// ─── GET SAVED SERVICES ──────────────────────────────────────────────────────
-// GET /api/saved
+
 const getSavedServices = (req, res) => {
   try {
     res.status(200).json({ success: true, count: savedServices.length, data: savedServices });
@@ -168,8 +160,7 @@ const getSavedServices = (req, res) => {
   }
 };
 
-// ─── GET HIRED SERVICES ──────────────────────────────────────────────────────
-// GET /api/hired
+
 const getHiredServices = (req, res) => {
   try {
     res.status(200).json({ success: true, count: hiredServices.length, data: hiredServices });
@@ -178,7 +169,7 @@ const getHiredServices = (req, res) => {
   }
 };
 
-// Export all functions so routes can use them
+
 module.exports = {
   getAllServices,
   getServiceById,
