@@ -89,5 +89,5 @@ FreelanceHub/
 ---
 
 ## 👨‍💻 Author
-
+Huda Imran
 Built as a Lab 10 project demonstrating full-stack web development with Express.js and vanilla JavaScript.
