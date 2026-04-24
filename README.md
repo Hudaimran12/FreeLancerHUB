@@ -3,6 +3,8 @@
 A full-stack freelance services platform inspired by Fiverr/Upwork, built with **Express.js** (backend) and **Vanilla JavaScript** (frontend).
 
 ---
+## Author
+Huda Imran
 
 ## 📸 Features
 
