@@ -7,10 +7,7 @@ const path = require("path");
 const app = express(); // create the express application
 const PORT = 3000;     // the server will run on port 3000
 
-// ─── MIDDLEWARE ───────────────────────────────────────────────────────────────
-// Middleware runs before our routes handle the request
 
-// Parse incoming JSON data (so req.body works)
 app.use(express.json());
 
 // Parse URL-encoded data (for HTML forms)
