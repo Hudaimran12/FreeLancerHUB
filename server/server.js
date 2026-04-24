@@ -1,6 +1,6 @@
 // server/server.js
 // This is the main server file - the heart of our backend
-
+// FreelanceHub backend server
 const express = require("express");
 const path = require("path");
 
