@@ -1,8 +1,4 @@
-// client/js/app.js
-// Main JavaScript file - handles all frontend logic
 
-// ─── API BASE URL ─────────────────────────────────────────────────────────────
-// All our API calls will use this base URL
 const API = "http://localhost:3000/api";
 
 // ─── APP STATE ────────────────────────────────────────────────────────────────
