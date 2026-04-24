@@ -1,5 +1,3 @@
-// controllers/servicesController.js
-// This file handles all the logic for service-related API endpoints
 
 const fs = require("fs");
 const path = require("path");
